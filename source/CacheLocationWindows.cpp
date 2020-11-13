@@ -34,7 +34,7 @@ std::string standardCacheLocation() {
   SHGetKnownFolderPath(FOLDERID_LocalAppData, 0, NULL, &localAppData);
   std::stringstream ss;
   ss << localAppData << "/NativeFormat/";
-  CreateDirectory(ss.str().c_str(), NULL);
+  CreateDirectory(reinterpret_cast<LPCWSTR>(ss.str().c_str()), NULL);
   CoTaskMemFree(static_cast<void *>(localAppData));
   return ss.str();
 }
